@@ -40,10 +40,6 @@
         <span @click="show" class="input-widget">Filter</span>
       </div>
     </div>
-    <slot name="welcome-page"></slot>
-    <slot name="restaurant-detail-page"></slot>
-    <slot name="restaurant-search-by-tag-page"></slot>
-    <slot name="restaurant-search-by-name-page"></slot>
   </div>
 </template>
 

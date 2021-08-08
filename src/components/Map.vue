@@ -13,7 +13,7 @@ export default {
       accessToken:
         "pk.eyJ1IjoiYmFraHRpeWFyZ2FyYXNob3YiLCJhIjoiY2tydDQ4OXQ0MWRkNzJ0cGZ4Y2dqOTU1NiJ9.bXbuhTIaTwLV39SNY9B5VQ", // your access token. Needed if you using Mapbox maps
       mapStyle: "mapbox://styles/bakhtiyargarashov/ckrt8nouh2o1117pii8nhz1o2", // your map style
-      center: [44.80293273925781, 41.6944496643259],
+      center: [44.890641, 41.712012,],
       map: {},
       allRestaurantsData: [],
     };

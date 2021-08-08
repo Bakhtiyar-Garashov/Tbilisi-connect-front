@@ -4,9 +4,9 @@
     <Sidebar>
 
     </Sidebar>
-    <WelcomePage>
-
-    </WelcomePage>
+    <template v-if="isWelcomePageActive">
+      <WelcomePage/>
+    </template>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   },
   data(){
     return {
-      isWelcomePageActive: false,
+      isWelcomePageActive: true,
     }
   },
   created(){

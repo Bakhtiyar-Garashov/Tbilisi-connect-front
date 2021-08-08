@@ -107,4 +107,13 @@ export default {
     font-family: 'Montserrat', sans-serif;
     padding: 10px 6px;
 }
+#footer a:hover {
+  background-color: black;
+  color: #FF7701;
+}
+
+.v-icon:hover{
+  color: #FF7701 !important;
+  cursor: pointer;
+}
 </style>
