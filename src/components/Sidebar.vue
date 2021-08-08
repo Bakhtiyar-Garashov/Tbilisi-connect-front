@@ -26,18 +26,21 @@
       </div>
     </div>
     <div id="lower">
-      <div v-if="!isSearchActivated" id="right">
-        <a href="/" @click.prevent="isSearchActivated = !isSearchActivated"
-          >Search</a
-        >
-      </div>
-      <div v-if="isSearchActivated" class="search-container">
+      <div class="search-container">
         <input
           id="search-field"
           placeholder="What places are you interested in?"
+          v-model="searchWord"
         />
-        <span @click="show" class="input-widget">Clear</span>
-        <span @click="show" class="input-widget">Filter</span>
+        <span v-if="searchWord.length > 0" @click="resetSearchWord" class="input-widget"
+          >Clear</span
+        >
+        <span
+          v-else-if="searchWord.length === 0"
+          @click="show"
+          class="input-widget"
+          >Filter</span
+        >
       </div>
     </div>
   </div>
@@ -49,13 +52,16 @@ export default {
   data() {
     return {
       selectedLanguage: "EN",
-      isSearchActivated: false,
+      searchWord: "",
     };
   },
   computed: {},
   methods: {
+    resetSearchWord() {
+      this.searchWord = "";
+    },
     show(){
-      alert('test')
+      alert('doing nothing');
     }
   },
 };
@@ -103,7 +109,7 @@ export default {
 #about a {
   text-decoration: none;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 18px;
   color: #1c1c1c;
 }
@@ -171,7 +177,7 @@ export default {
 span,
 a {
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 18px;
   color: black;
 }
@@ -193,12 +199,13 @@ a {
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   color: #1c1c1c;
+  font-weight: bold;
 }
 
 .input-widget {
   color: black;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   position: absolute;
   top: 103px;
   right: 48px;

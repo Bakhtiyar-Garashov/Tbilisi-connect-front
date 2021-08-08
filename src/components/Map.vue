@@ -13,7 +13,7 @@ export default {
       accessToken:
         "pk.eyJ1IjoiYmFraHRpeWFyZ2FyYXNob3YiLCJhIjoiY2tydDQ4OXQ0MWRkNzJ0cGZ4Y2dqOTU1NiJ9.bXbuhTIaTwLV39SNY9B5VQ", // your access token. Needed if you using Mapbox maps
       mapStyle: "mapbox://styles/bakhtiyargarashov/ckrt8nouh2o1117pii8nhz1o2", // your map style
-      center: [44.890641, 41.712012,],
+      center: [44.890641, 41.712012],
       map: {},
       allRestaurantsData: [],
     };
@@ -99,9 +99,8 @@ export default {
         type: "symbol",
         source: "all_restaurants",
         filter: ["has", "point_count"],
-        "paint": {
-          "text-color":"#fff",
-
+        paint: {
+          "text-color": "#fff",
         },
         layout: {
           "text-field": "{point_count_abbreviated}",
@@ -132,7 +131,7 @@ export default {
         });
         const clusterId = features[0].properties.cluster_id;
         this.map
-          .getSource("earthquakes")
+          .getSource("all_restaurants")
           .getClusterExpansionZoom(clusterId, (err, zoom) => {
             if (err) return;
 
@@ -143,14 +142,19 @@ export default {
           });
       });
 
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+      });
+
       // When a click event occurs on a feature in
       // the unclustered-point layer, open a popup at
       // the location of the feature, with
       // description HTML from its properties.
-      this.map.on("click", "unclustered-point", (e) => {
+      this.map.on('mousemove', "unclustered-point", (e) => {
+        
         const coordinates = e.features[0].geometry.coordinates.slice();
         const name = e.features[0].properties.name;
-      
 
         // Ensure that if the map is zoomed out such that
         // multiple copies of the feature are visible, the
@@ -158,14 +162,19 @@ export default {
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
+        this.map.getCanvas().style.cursor = 'pointer';
+        this.map.setPaintProperty("unclustered-point", 'circle-radius', ["case", ["==", ["get", "name"], e.features[0].properties.name], 13, 10 ]);
 
-        new mapboxgl.Popup()
-          .setLngLat(coordinates)
-          .setHTML(name)
-          .addTo(this.map);
+        popup.setLngLat(coordinates).setHTML(name).addTo(this.map);
       });
 
-      this.map.on("mouseenter", "clusters", () => {
+      this.map.on('mouseleave', 'unclustered-point', () => {
+        this.map.setPaintProperty("unclustered-point", 'circle-radius', 10);
+        popup.remove();
+        this.map.getCanvas().style.cursor = 'pointer';
+      });
+
+      this.map.on("mousemove", "clusters", () => {
         this.map.getCanvas().style.cursor = "pointer";
       });
       this.map.on("mouseleave", "clusters", () => {

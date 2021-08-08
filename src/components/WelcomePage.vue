@@ -10,36 +10,53 @@
       <p>{{ welcomePageData.subtitle_en }}</p>
     </div>
     <div id="social">
-        <a v-if="welcomePageData.url_main" :href="welcomePageData.url_main" target="_blank">
-        <v-icon v-if="welcomePageData.url_main" class="web">{{ web }}</v-icon>
+      <a
+        v-if="welcomePageData.url_main"
+        :href="welcomePageData.url_main"
+        target="_blank"
+      >
+        <img v-if="welcomePageData.url_main" src="../assets/main.svg" class="web"/>
       </a>
-      <a v-if="welcomePageData.url_facebook" :href="welcomePageData.url_facebook" target="_blank">
-        <v-icon v-if="welcomePageData.url_facebook" class="facebook">{{ faceboook }}</v-icon>
+      <a
+        v-if="welcomePageData.url_facebook"
+        :href="welcomePageData.url_facebook"
+        target="_blank"
+      >
+      <img v-if="welcomePageData.url_facebook" src="../assets/facebook.svg" class="facebook"/>
       </a>
-      <a v-if="welcomePageData.url_instagram" :href="welcomePageData.url_instagram" target="_blank">
-        <v-icon v-if="welcomePageData.url_instagram" class="web">{{ instagram }}</v-icon>
+      <a
+        v-if="welcomePageData.url_instagram"
+        :href="welcomePageData.url_instagram"
+        target="_blank"
+      >
+      <img v-if="welcomePageData.url_instagram" src="../assets/instagram.svg" class="instagram"/>
+    
       </a>
-      <a v-if="welcomePageData.url_twitter" :href="welcomePageData.url_twitter" target="_blank">
-        <v-icon v-if="welcomePageData.url_twitter" class="web">{{ twitter }}</v-icon>
+      <a
+        v-if="welcomePageData.url_twitter"
+        :href="welcomePageData.url_twitter"
+        target="_blank"
+      >
+      <img v-if="welcomePageData.url_twitter" src="../assets/twitter.svg" class="twitter"/>
       </a>
     </div>
     <div id="footer">
-     <a v-if="welcomePageData.url_facebook" :href="welcomePageData.url_facebook" target="_blank">Follow us on Facebook</a>
+      <a
+        v-if="welcomePageData.url_facebook"
+        :href="welcomePageData.url_facebook"
+        target="_blank"
+        >Follow us on Facebook</a
+      >
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { mdiEarth, mdiFacebook, mdiInstagram, mdiTwitter } from "@mdi/js";
 export default {
   data() {
     return {
       welcomePageData: [],
-      web: mdiEarth,
-      faceboook: mdiFacebook,
-      instagram: mdiInstagram,
-      twitter: mdiTwitter,
     };
   },
   created() {
@@ -62,11 +79,11 @@ export default {
   top: 140px;
   right: 0;
   overflow-y: auto;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 #title {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 900 !important;
   line-height: 30px;
   margin-top: 26px;
   margin-bottom: 8px;
@@ -77,7 +94,7 @@ export default {
   font-size: 16px;
   line-height: 24px;
   color: black;
-  font-weight: 400;
+  font-weight: 700;
 }
 #image img {
   width: 440px;
@@ -94,26 +111,27 @@ export default {
 }
 
 #footer {
-    margin-top: 26px;
-    padding-bottom: 50px;
+  margin-top: 26px;
+  padding-bottom: 50px;
 }
 
 #footer a {
-    border: 1px solid black;
-    border-radius: 4px;
-    font-weight: 500;
-    line-height: 14.63px;
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px 6px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-weight: 700;
+  line-height: 14.63px;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  padding: 10px 12px;
 }
 #footer a:hover {
   background-color: black;
-  color: #FF7701;
+  color: #ff7701;
 }
 
-.v-icon:hover{
-  color: #FF7701 !important;
-  cursor: pointer;
+#social img {
+  display: inline;
 }
+
+
 </style>
