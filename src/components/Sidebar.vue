@@ -70,13 +70,11 @@ export default {
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 100%;
+  height: 140px;
   background-color: white;
   position: absolute;
   top: 0%;
   right: 0%;
-  overflow-y: auto;
-  overflow-x:hidden;
   z-index: 999;
 }
 

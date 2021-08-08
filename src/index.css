@@ -28,3 +28,13 @@ html,body { height:100%; }
 *:visited {
   outline: none !important;
 }
+
+.mapboxgl-popup-content {
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+.mapboxgl-popup-close-button {
+  width: 10px;
+  margin-right: 8px;
+  padding: 0;
+}

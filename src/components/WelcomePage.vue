@@ -55,9 +55,14 @@ export default {
 #welcome-page {
   background-color: white;
   width: 500px;
-  height: 100%;
+  height: calc(100vh - 140px);
   padding-left: 20px;
   padding-right: 40px;
+  position: absolute;
+  top: 140px;
+  right: 0;
+  overflow-y: auto;
+  overflow-x:hidden;
 }
 #title {
   font-size: 20px;

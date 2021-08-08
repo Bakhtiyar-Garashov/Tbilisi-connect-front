@@ -2,10 +2,11 @@
   <div id="app">
     <Map></Map>
     <Sidebar>
-      <template v-if="isWelcomePageActive" v-slot:welcome-page>  
-         <WelcomePage></WelcomePage>
-      </template>
+
     </Sidebar>
+    <WelcomePage>
+
+    </WelcomePage>
   </div>
 </template>
 
@@ -22,8 +23,15 @@ export default {
   },
   data(){
     return {
-      isWelcomePageActive: true,
+      isWelcomePageActive: false,
     }
+  },
+  created(){
+   
+  },
+
+  mounted(){
+    
   }
 }
 </script>
