@@ -6,6 +6,7 @@
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import axios from "axios";
+import markerIcon from "../assets/Group.png";
 export default {
   components: {},
   data() {
@@ -51,7 +52,12 @@ export default {
       duration: 1200,
     });
 
+    let img = new Image(47,45.5);
+    img.onload=()=>this.map.addImage('icon',img);
+    img.src = markerIcon;
+
     this.map.on("load", () => {
+
       this.map.addSource("all_restaurants", {
         type: "geojson",
         data: this.allRestaurantsData,
@@ -109,18 +115,23 @@ export default {
         },
       });
 
+  
       // unclustered point objects
 
       this.map.addLayer({
         id: "unclustered-point",
-        type: "circle",
+        type: "symbol",
         source: "all_restaurants",
         filter: ["!", ["has", "point_count"]],
-        paint: {
-          "circle-color": "#FA7701",
-          "circle-radius": 10,
-          "circle-stroke-width": 1,
-          "circle-stroke-color": "#fff",
+        // paint: {
+        //   "circle-color": "#FA7701",
+        //   "circle-radius": 10,
+        //   "circle-stroke-width": 1,
+        //   "circle-stroke-color": "#fff",
+        // },
+        layout: {
+          "icon-image": "icon",
+          'icon-size':1
         },
       });
 
@@ -151,8 +162,7 @@ export default {
       // the unclustered-point layer, open a popup at
       // the location of the feature, with
       // description HTML from its properties.
-      this.map.on('mousemove', "unclustered-point", (e) => {
-        
+      this.map.on("mousemove", "unclustered-point", (e) => {
         const coordinates = e.features[0].geometry.coordinates.slice();
         const name = e.features[0].properties.name;
 
@@ -162,16 +172,24 @@ export default {
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
-        this.map.getCanvas().style.cursor = 'pointer';
-        this.map.setPaintProperty("unclustered-point", 'circle-radius', ["case", ["==", ["get", "name"], e.features[0].properties.name], 13, 10 ]);
+        this.map.getCanvas().style.cursor = "pointer";
+        this.map.setLayoutProperty("unclustered-point", "icon-size", [
+          "case",
+          ["==", ["get", "name"], e.features[0].properties.name],
+          1.2,
+          1
+        ]);
 
-        popup.setLngLat(coordinates).setHTML(name).addTo(this.map);
+        popup
+          .setLngLat(coordinates)
+          .setHTML(name)
+          .addTo(this.map);
       });
 
-      this.map.on('mouseleave', 'unclustered-point', () => {
-        this.map.setPaintProperty("unclustered-point", 'circle-radius', 10);
+      this.map.on("mouseleave", "unclustered-point", () => {
+        this.map.setLayoutProperty("unclustered-point", "icon-size", 1);
         popup.remove();
-        this.map.getCanvas().style.cursor = 'pointer';
+        this.map.getCanvas().style.cursor = "pointer";
       });
 
       this.map.on("mousemove", "clusters", () => {
