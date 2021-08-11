@@ -21,14 +21,14 @@ export default {
   },
 
   methods: {
-    async createMap() {
+    createMap() {
       try {
         mapboxgl.accessToken = this.accessToken;
         const map = new mapboxgl.Map({
           container: "map",
           style: this.mapStyle,
           center: this.center,
-          zoom: 9,
+          zoom: 10,
         });
         map.addControl(new mapboxgl.NavigationControl(), "bottom-left");
         this.map = map;
@@ -38,26 +38,43 @@ export default {
     },
   },
 
-  created() {
+  created() {},
+
+  mounted() {
     axios
       .get("http://127.0.0.1:8000/api/v1/restaurants/")
       .then((response) => (this.allRestaurantsData = response.data))
       .catch((err) => alert(err));
-  },
 
-  mounted() {
     this.createMap();
-    // Zoom to the zoom level 8 with an animated transition
-    this.map.zoomTo(11, {
-      duration: 1200,
+
+    // Zoom to the zoom level with an animated transition
+    this.map.flyTo({
+      // These options control the ending camera position: centered at
+      // the target, at zoom level 9, and north up.
+      center: [44.860701, 41.716257],
+      zoom: 11,
+      bearing: 0,
+
+      // These options control the flight curve, making it move
+      // slowly and zoom out almost completely before starting
+      // to pan.
+      speed: 0.5, // make the flying slow
+      curve: 1, // change the speed at which it zooms out
+
+      // This can be any easing function: it takes a number between
+      // 0 and 1 and returns another number between 0 and 1.
+      easing: (t) => t,
+
+      // this animation is considered essential with respect to prefers-reduced-motion
+      essential: true,
     });
 
-    let img = new Image(47,45.5);
-    img.onload=()=>this.map.addImage('icon',img);
+    let img = new Image(47, 45.5);
+    img.onload = () => this.map.addImage("icon", img);
     img.src = markerIcon;
 
     this.map.on("load", () => {
-
       this.map.addSource("all_restaurants", {
         type: "geojson",
         data: this.allRestaurantsData,
@@ -115,7 +132,6 @@ export default {
         },
       });
 
-  
       // unclustered point objects
 
       this.map.addLayer({
@@ -131,7 +147,7 @@ export default {
         // },
         layout: {
           "icon-image": "icon",
-          'icon-size':1
+          "icon-size": 1,
         },
       });
 
@@ -177,7 +193,7 @@ export default {
           "case",
           ["==", ["get", "name"], e.features[0].properties.name],
           1.2,
-          1
+          1,
         ]);
 
         popup

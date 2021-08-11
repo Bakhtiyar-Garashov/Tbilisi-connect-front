@@ -1,40 +1,34 @@
 <template>
   <div id="app">
     <Map></Map>
-    <Sidebar>
-
-    </Sidebar>
+    <Sidebar> </Sidebar>
     <template v-if="isWelcomePageActive">
-      <WelcomePage/>
+      <WelcomePage />
     </template>
   </div>
 </template>
 
 <script>
-import Map from './components/Map.vue'
-import Sidebar from './components/Sidebar.vue'
-import WelcomePage from './components/WelcomePage.vue'
+import Map from "./components/Map.vue";
+import Sidebar from "./components/Sidebar.vue";
+import WelcomePage from "./components/WelcomePage.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Map,
     Sidebar,
-    WelcomePage
+    WelcomePage,
   },
-  data(){
+  data() {
     return {
       isWelcomePageActive: true,
-    }
+    };
   },
-  created(){
-   
-  },
+  created() {},
 
-  mounted(){
-    
-  }
-}
+  mounted() {
+    setTimeout(() => (this.isWelcomePageActive = false), 5000);
+  },
+};
 </script>
-<style>
-
-</style>
+<style></style>
