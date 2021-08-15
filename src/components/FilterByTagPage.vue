@@ -8,6 +8,7 @@
         tag.text | capitalize
       }}</span>
     </div>
+    <button id="hide" @click.prevent="emitHideCommand">Hide</button>
   </div>
 </template>
 
@@ -28,6 +29,9 @@ export default {
   methods:{
       show(value){
           alert(value);
+      },
+      emitHideCommand(){
+          this.$emit('emitHideCommand');
       }
   },
   filters: {
@@ -70,7 +74,7 @@ export default {
 
 .each-tag {
     padding: 1px 4px;
-    font-family: "Montserrat";
+    font-family: "Montserrat", sans-serif;
     font-size: 12px;
     line-height: 14.63px;
     text-align: center;
@@ -79,6 +83,18 @@ export default {
     margin-right: 10px;
     white-space: nowrap;
     cursor: pointer;
+}
 
+.each-tag:hover {
+  background-color: black;
+  color: #ff7701;
+}
+
+#hide {
+  position: absolute;
+  right: 40px;
+  bottom: 15px;
+  font-weight: 500;
 }
 </style>
+

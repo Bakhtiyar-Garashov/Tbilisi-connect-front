@@ -3,8 +3,8 @@
     <Map></Map>
     <Sidebar @showWelcomePage="showWelcomePage" @showFilterByTagPage="showFilterByTagPage" />
     <transition name="slide-fade">
-      <WelcomePage v-if="isWelcomePageActive" />
-      <FilterByTagPage v-else-if="isFilterByTagPageActive"/>
+      <WelcomePage v-if="isWelcomePageActive" @emitHideCommand="isWelcomePageActive=false" />
+      <FilterByTagPage v-else-if="isFilterByTagPageActive" @emitHideCommand="isFilterByTagPageActive=false"/>
     </transition>
    
   </div>
@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      isWelcomePageActive: true,
+      isWelcomePageActive: false,
       isFilterByTagPageActive: false,
     };
   },

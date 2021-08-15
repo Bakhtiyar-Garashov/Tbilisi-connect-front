@@ -130,6 +130,7 @@
         >Follow us on Facebook</a
       >
     </div>
+    <button id="hide" @click.prevent="emitHideCommand">Hide</button>
   </div>
 </template>
 
@@ -146,6 +147,11 @@ export default {
       .get("http://127.0.0.1:8000/api/v1/welcome/")
       .then((response) => (this.welcomePageData = response.data[0]))
       .catch((err) => alert(err));
+  },
+  methods:{
+     emitHideCommand(){
+          this.$emit('emitHideCommand');
+      }
   },
 };
 </script>
@@ -210,8 +216,14 @@ export default {
   margin-top: 28px;
 }
 
-#social svg:hover {
-  color: #ff7701;
+#social path:hover {
+  fill: #ff7701;
 }
-
+#hide {
+  right: 40px;
+  font-weight: 500;
+  margin-top: calc(10vh - 30px);
+  margin-bottom: 20px;
+  float: right;
+}
 </style>
