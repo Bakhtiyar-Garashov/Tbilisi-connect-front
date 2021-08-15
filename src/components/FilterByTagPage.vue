@@ -4,7 +4,7 @@
       <p class="title">Suggestions</p>
     </div>
     <div id="tags-list">
-      <span class="each-tag" :key="tag.id" v-for="tag in allTagsList">{{
+      <span class="each-tag" :key="tag.id" @click="show(tag.text)" v-for="tag in allTagsList">{{
         tag.text | capitalize
       }}</span>
     </div>
@@ -24,6 +24,11 @@ export default {
       .get("http://127.0.0.1:8000/api/v1/tags/")
       .then((response) => (this.allTagsList = response.data))
       .catch((err) => alert(err));
+  },
+  methods:{
+      show(value){
+          alert(value);
+      }
   },
   filters: {
     capitalize: function(value) {
@@ -73,6 +78,7 @@ export default {
     border-radius: 4px;
     margin-right: 10px;
     white-space: nowrap;
+    cursor: pointer;
 
 }
 </style>
