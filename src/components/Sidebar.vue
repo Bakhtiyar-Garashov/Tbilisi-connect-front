@@ -6,7 +6,7 @@
       </div>
       <div id="widgets">
         <div id="about">
-          <a href="/">About</a>
+          <a href="/" @click.prevent="showWelcomePage" >About</a>
         </div>
         <div class="sl-nav">
           <ul>
@@ -37,8 +37,8 @@
         >
         <span
           v-else-if="searchWord.length === 0"
-          @click="show"
           class="input-widget"
+          @click.prevent="showFilterByTagPage"
           >Filter</span
         >
       </div>
@@ -60,8 +60,11 @@ export default {
     resetSearchWord() {
       this.searchWord = "";
     },
-    show(){
-      alert('doing nothing');
+    showWelcomePage(){
+      this.$emit('showWelcomePage')
+    },
+    showFilterByTagPage(){
+      this.$emit('showFilterByTagPage')
     }
   },
 };

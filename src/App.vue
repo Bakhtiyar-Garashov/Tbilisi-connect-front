@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <Map></Map>
-    <Sidebar> </Sidebar>
-    <template v-if="isWelcomePageActive">
-      <WelcomePage />
-    </template>
+    <Sidebar @showWelcomePage="showWelcomePage" @showFilterByTagPage="showFilterByTagPage" />
+    <transition name="slide-fade">
+      <WelcomePage v-if="isWelcomePageActive" />
+      <FilterByTagPage v-else-if="isFilterByTagPageActive"/>
+    </transition>
+   
   </div>
 </template>
 
@@ -12,22 +14,33 @@
 import Map from "./components/Map.vue";
 import Sidebar from "./components/Sidebar.vue";
 import WelcomePage from "./components/WelcomePage.vue";
+import FilterByTagPage from "./components/FilterByTagPage.vue";
 export default {
   name: "App",
   components: {
     Map,
     Sidebar,
     WelcomePage,
+    FilterByTagPage,
   },
   data() {
     return {
       isWelcomePageActive: true,
+      isFilterByTagPageActive: false,
     };
   },
-  created() {},
-
   mounted() {
     setTimeout(() => (this.isWelcomePageActive = false), 5000);
+  },
+  methods: {
+    showWelcomePage() {
+     this.isFilterByTagPageActive=false;
+     this.isWelcomePageActive=true;
+    },
+    showFilterByTagPage() {
+      this.isWelcomePageActive=false;
+      this.isFilterByTagPageActive=true;
+    },
   },
 };
 </script>
