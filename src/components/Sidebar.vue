@@ -6,7 +6,7 @@
       </div>
       <div id="widgets">
         <div id="about">
-          <a href="/" @click.prevent="showWelcomePage" >About</a>
+          <a href="/" @click.prevent="showWelcomePage">About</a>
         </div>
         <div class="sl-nav">
           <ul>
@@ -32,7 +32,10 @@
           placeholder="What places are you interested in?"
           v-model="searchWord"
         />
-        <span v-if="searchWord.length > 0" @click="resetSearchWord" class="input-widget"
+        <span
+          v-if="searchWord.length > 0"
+          @click="resetSearchWord"
+          class="input-widget"
           >Clear</span
         >
         <span
@@ -60,12 +63,12 @@ export default {
     resetSearchWord() {
       this.searchWord = "";
     },
-    showWelcomePage(){
-      this.$emit('showWelcomePage')
+    showWelcomePage() {
+      this.$emit("showWelcomePage");
     },
-    showFilterByTagPage(){
-      this.$emit('showFilterByTagPage')
-    }
+    showFilterByTagPage() {
+      this.$emit("showFilterByTagPage");
+    },
   },
 };
 </script>
@@ -115,6 +118,11 @@ export default {
   font-weight: 700;
   line-height: 18px;
   color: #1c1c1c;
+}
+
+#about a:hover {
+  text-decoration: underline;
+  color: #fa7701;
 }
 #widgets {
   display: flex;

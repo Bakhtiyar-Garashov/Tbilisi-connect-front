@@ -4,9 +4,13 @@
       <p class="title">Suggestions</p>
     </div>
     <div id="tags-list">
-      <span class="each-tag" :key="tag.id" @click="show(tag.text)" v-for="tag in allTagsList">{{
-        tag.text | capitalize
-      }}</span>
+      <span
+        class="each-tag"
+        :key="tag.id"
+        @click="show(tag.text)"
+        v-for="tag in allTagsList"
+        >{{ tag.text | capitalize }}</span
+      >
     </div>
     <button id="hide" @click.prevent="emitHideCommand">Hide</button>
   </div>
@@ -26,13 +30,13 @@ export default {
       .then((response) => (this.allTagsList = response.data))
       .catch((err) => alert(err));
   },
-  methods:{
-      show(value){
-          alert(value);
-      },
-      emitHideCommand(){
-          this.$emit('emitHideCommand');
-      }
+  methods: {
+    show(value) {
+      alert(value);
+    },
+    emitHideCommand() {
+      this.$emit("emitHideCommand");
+    },
   },
   filters: {
     capitalize: function(value) {
@@ -68,21 +72,21 @@ export default {
 }
 
 #tags-list {
-    width: 100%;
-    word-wrap: break-word;
+  width: 100%;
+  word-wrap: break-word;
 }
 
 .each-tag {
-    padding: 1px 4px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 12px;
-    line-height: 14.63px;
-    text-align: center;
-    border: 1px solid black;
-    border-radius: 4px;
-    margin-right: 10px;
-    white-space: nowrap;
-    cursor: pointer;
+  padding: 1px 4px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  line-height: 14.63px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-right: 10px;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .each-tag:hover {
@@ -97,4 +101,3 @@ export default {
   font-weight: 500;
 }
 </style>
-

@@ -37,9 +37,6 @@ export default {
       }
     },
   },
-
-  created() {},
-
   mounted() {
     axios
       .get("http://127.0.0.1:8000/api/v1/restaurants/")
@@ -79,7 +76,7 @@ export default {
         type: "geojson",
         data: this.allRestaurantsData,
         cluster: true,
-        clusterRadius: 50,
+        clusterRadius: 80,
       });
 
       // adds layer
@@ -139,12 +136,7 @@ export default {
         type: "symbol",
         source: "all_restaurants",
         filter: ["!", ["has", "point_count"]],
-        // paint: {
-        //   "circle-color": "#FA7701",
-        //   "circle-radius": 10,
-        //   "circle-stroke-width": 1,
-        //   "circle-stroke-color": "#fff",
-        // },
+
         layout: {
           "icon-image": "icon",
           "icon-size": 1,
