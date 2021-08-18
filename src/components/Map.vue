@@ -37,14 +37,14 @@ export default {
       }
     },
   },
-  mounted() {
+  created(){
     axios
       .get("http://127.0.0.1:8000/api/v1/restaurants/")
       .then((response) => (this.allRestaurantsData = response.data))
       .catch((err) => alert(err));
-
+  },
+  mounted() {
     this.createMap();
-
     // Zoom to the zoom level with an animated transition
     this.map.flyTo({
       // These options control the ending camera position: centered at

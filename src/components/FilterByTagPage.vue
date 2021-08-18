@@ -9,7 +9,7 @@
         :key="tag.id"
         @click="show(tag.text)"
         v-for="tag in allTagsList"
-        >{{ tag.text | capitalize }}</span
+        ><img :src="iconBtc" class="icon-btc" v-if="tag.text.toLowerCase()==='cryptocurrency'"/>{{ tag.text | capitalize }}</span
       >
     </div>
     <button id="hide" @click.prevent="emitHideCommand">Hide</button>
@@ -22,6 +22,7 @@ export default {
   data() {
     return {
       allTagsList: [],
+      iconBtc: require('../assets/btc.svg'),
     };
   },
   created() {
@@ -73,10 +74,12 @@ export default {
 
 #tags-list {
   width: 100%;
-  word-wrap: break-word;
 }
 
 .each-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 1px 4px;
   font-family: "Montserrat", sans-serif;
   font-size: 12px;
@@ -92,6 +95,12 @@ export default {
 .each-tag:hover {
   background-color: black;
   color: #ff7701;
+}
+
+.each-tag img {
+  display: inline;
+  padding: 0;
+  margin: 0;
 }
 
 #hide {
