@@ -11,8 +11,11 @@
         <div class="sl-nav">
           <ul>
             <li>
-              <span @click="defaultLanguage='en'">{{ defaultLanguage.toUpperCase() }}</span>
+              <span>{{ defaultLanguage.toUpperCase() }}</span>
               <ul>
+                <li>
+                  <span @click="defaultLanguage='en'">EN</span>
+                </li>
                 <li>
                   <span @click="defaultLanguage='ge'">GE</span>
                 </li>

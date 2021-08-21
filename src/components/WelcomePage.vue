@@ -61,7 +61,7 @@
         v-if="welcomePageData.url_facebook"
         :href="welcomePageData.url_facebook"
         target="_blank"
-        >Follow us on Facebook</a
+        >{{buttonText}}</a
       >
     </div>
     <button id="hide" @click.prevent="emitHideCommand">Hide</button>
@@ -113,6 +113,18 @@ export default {
           return this.welcomePageData.subtitle_ge
         default:
           return this.welcomePageData.subtitle_en
+      }
+    },
+    buttonText: function(){
+      switch (this.language) {
+        case 'en':
+          return 'Follow us on Facebook';
+        case 'ru':
+          return 'Следите за нами на Фейсбуке';
+        case 'ge':
+          return 'მოგვყევით ფეისბუქზე';      
+        default:
+          return 'Follow us on Facebook';
       }
     }
   }
