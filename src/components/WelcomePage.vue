@@ -7,7 +7,7 @@
       <img :src="welcomePageData.image_url" alt="" srcset="" />
     </div>
     <div id="subtitle">
-      <p>{{ welcomePageData.subtitle_en }}</p>
+      <p>{{ subtitle }}</p>
     </div>
     <div id="social">
       <a
@@ -86,6 +86,7 @@ export default {
       facebookHovered: false,
       twitterHovered: false,
       instagramHovered: false,
+      language: localStorage.getItem('lang') || 'en',
     };
   },
   created() {
@@ -93,12 +94,28 @@ export default {
       .get("http://127.0.0.1:8000/api/v1/welcome/")
       .then((response) => (this.welcomePageData = response.data[0]))
       .catch((err) => alert(err));
+      this.language = JSON.parse(localStorage.getItem('lang'));
   },
   methods: {
     emitHideCommand() {
       this.$emit("emitHideCommand");
     },
   },
+
+  computed: {
+    subtitle: function(){
+      switch (this.language) {
+        case 'en':
+          return this.welcomePageData.subtitle_en
+        case 'ru':
+          return this.welcomePageData.subtitle_ru
+        case 'ge':
+          return this.welcomePageData.subtitle_ge
+        default:
+          return this.welcomePageData.subtitle_en
+      }
+    }
+  }
 };
 </script>
 

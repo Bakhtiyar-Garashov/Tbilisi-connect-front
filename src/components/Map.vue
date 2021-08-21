@@ -37,10 +37,11 @@ export default {
       }
     },
   },
-  created(){
+  created() {
     axios
       .get("http://127.0.0.1:8000/api/v1/restaurants/")
-      .then((response) => (this.allRestaurantsData = response.data))
+      .then((response) => response.data)
+      .then((data) => (this.allRestaurantsData = data))
       .catch((err) => alert(err));
   },
   mounted() {
@@ -78,7 +79,6 @@ export default {
         cluster: true,
         clusterRadius: 80,
       });
-
       // adds layer
 
       this.map.addLayer({

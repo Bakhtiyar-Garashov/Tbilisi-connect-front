@@ -77,7 +77,7 @@ export default {
 }
 
 .each-tag {
-  display: inline-flex;
+  display: inline-block;
   align-items: center;
   justify-content: center;
   padding: 1px 4px;
@@ -99,8 +99,7 @@ export default {
 
 .each-tag img {
   display: inline;
-  padding: 0;
-  margin: 0;
+  margin-bottom: 1px;
 }
 
 #hide {

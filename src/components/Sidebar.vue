@@ -11,13 +11,13 @@
         <div class="sl-nav">
           <ul>
             <li>
-              <span :v-model="selectedLanguage">{{ selectedLanguage }}</span>
+              <span @click="defaultLanguage='en'">{{ defaultLanguage.toUpperCase() }}</span>
               <ul>
                 <li>
-                  <span class="active">GE</span>
+                  <span @click="defaultLanguage='ge'">GE</span>
                 </li>
                 <li>
-                  <span>RU</span>
+                  <span @click="defaultLanguage='ru'">RU</span>
                 </li>
               </ul>
             </li>
@@ -54,7 +54,7 @@ export default {
   components: {},
   data() {
     return {
-      selectedLanguage: "EN",
+      defaultLanguage: localStorage.getItem('lang') || 'en',
       searchWord: "",
     };
   },
@@ -70,6 +70,12 @@ export default {
       this.$emit("showFilterByTagPage");
     },
   },
+  watch: {
+    defaultLanguage: function (){
+      localStorage.setItem('lang', this.defaultLanguage);
+    }
+  }
+
 };
 </script>
 
