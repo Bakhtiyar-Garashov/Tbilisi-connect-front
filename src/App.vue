@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Map></Map>
+    <Map :geoData="allRestaurantsData"></Map>
     <Sidebar @showWelcomePage="showWelcomePage" @showFilterByTagPage="showFilterByTagPage" />
     <transition name="slide-fade">
       <WelcomePage v-if="isWelcomePageActive" @emitHideCommand="isWelcomePageActive=false" />
@@ -15,6 +15,7 @@ import Map from "./components/Map.vue";
 import Sidebar from "./components/Sidebar.vue";
 import WelcomePage from "./components/WelcomePage.vue";
 import FilterByTagPage from "./components/FilterByTagPage.vue";
+import axios from 'axios';
 export default {
   name: "App",
   components: {
@@ -27,7 +28,15 @@ export default {
     return {
       isWelcomePageActive: false,
       isFilterByTagPageActive: false,
+      allRestaurantsData: []
     };
+  },
+  created(){
+     axios
+      .get("http://127.0.0.1:8000/api/v1/restaurants/")
+      .then((response) => response.data)
+      .then((data) => (this.allRestaurantsData = data))
+      .catch((err) => alert(err));
   },
   mounted() {
     setTimeout(() => (this.isWelcomePageActive = false), 5000);

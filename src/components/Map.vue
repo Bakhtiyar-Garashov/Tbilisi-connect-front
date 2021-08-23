@@ -5,9 +5,13 @@
 <script>
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import axios from "axios";
 import markerIcon from "../assets/Group.png";
 export default {
+  props:{
+    geoData:{
+      required: true,
+    }
+  },
   components: {},
   data() {
     return {
@@ -16,7 +20,6 @@ export default {
       mapStyle: "mapbox://styles/bakhtiyargarashov/ckrt8nouh2o1117pii8nhz1o2", // your map style
       center: [44.890641, 41.712012],
       map: {},
-      allRestaurantsData: [],
     };
   },
 
@@ -38,11 +41,7 @@ export default {
     },
   },
   created() {
-    axios
-      .get("http://127.0.0.1:8000/api/v1/restaurants/")
-      .then((response) => response.data)
-      .then((data) => (this.allRestaurantsData = data))
-      .catch((err) => alert(err));
+  // this.allRestaurantsData = this.geoData;
   },
   mounted() {
     this.createMap();
@@ -75,7 +74,7 @@ export default {
     this.map.on("load", () => {
       this.map.addSource("all_restaurants", {
         type: "geojson",
-        data: this.allRestaurantsData,
+        data: this.geoData,
         cluster: true,
         clusterRadius: 80,
       });
