@@ -32,11 +32,7 @@ export default {
     };
   },
   created(){
-     axios
-      .get("http://127.0.0.1:8000/api/v1/restaurants/")
-      .then((response) => response.data)
-      .then((data) => (this.allRestaurantsData = data))
-      .catch((err) => alert(err));
+     this.getData();
   },
   mounted() {
     setTimeout(() => (this.isWelcomePageActive = false), 5000);
@@ -50,6 +46,14 @@ export default {
       this.isWelcomePageActive=false;
       this.isFilterByTagPageActive=true;
     },
+    async getData(){
+      try {
+        const data = await axios.get("http://127.0.0.1:8000/api/v1/restaurants/");
+        this.allRestaurantsData = data.data;
+      } catch (error) {
+        alert(`Error happened while fetching data. See more: ${error}`)
+      }
+    }
   },
 };
 </script>

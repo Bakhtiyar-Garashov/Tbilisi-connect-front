@@ -7,10 +7,10 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import markerIcon from "../assets/Group.png";
 export default {
-  props:{
-    geoData:{
+  props: {
+    geoData: {
       required: true,
-    }
+    },
   },
   components: {},
   data() {
@@ -39,9 +39,6 @@ export default {
         alert(`Error occurred when adding map. See more: ${err}`);
       }
     },
-  },
-  created() {
-  // this.allRestaurantsData = this.geoData;
   },
   mounted() {
     this.createMap();

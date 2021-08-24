@@ -61,7 +61,7 @@
         v-if="welcomePageData.url_facebook"
         :href="welcomePageData.url_facebook"
         target="_blank"
-        >{{buttonText}}</a
+        >{{ buttonText }}</a
       >
     </div>
     <button id="hide" @click.prevent="emitHideCommand">Hide</button>
@@ -86,48 +86,53 @@ export default {
       facebookHovered: false,
       twitterHovered: false,
       instagramHovered: false,
-      language: localStorage.getItem('lang') || 'en',
+      language: localStorage.getItem("lang") || "en",
     };
   },
   created() {
-    axios
-      .get("http://127.0.0.1:8000/api/v1/welcome/")
-      .then((response) => (this.welcomePageData = response.data[0]))
-      .catch((err) => alert(err));
-      this.language = JSON.parse(localStorage.getItem('lang'));
+    this.getData();
+    this.language = JSON.parse(localStorage.getItem("lang"));
   },
   methods: {
     emitHideCommand() {
       this.$emit("emitHideCommand");
     },
+    async getData() {
+      try {
+        const data = await axios.get("http://127.0.0.1:8000/api/v1/welcome/");
+        this.welcomePageData = data.data[0];
+      } catch (error) {
+        alert(`Error occurred. See: ${error}`);
+      }
+    },
   },
 
   computed: {
-    subtitle: function(){
+    subtitle: function() {
       switch (this.language) {
-        case 'en':
-          return this.welcomePageData.subtitle_en
-        case 'ru':
-          return this.welcomePageData.subtitle_ru
-        case 'ge':
-          return this.welcomePageData.subtitle_ge
+        case "en":
+          return this.welcomePageData.subtitle_en;
+        case "ru":
+          return this.welcomePageData.subtitle_ru;
+        case "ge":
+          return this.welcomePageData.subtitle_ge;
         default:
-          return this.welcomePageData.subtitle_en
+          return this.welcomePageData.subtitle_en;
       }
     },
-    buttonText: function(){
+    buttonText: function() {
       switch (this.language) {
-        case 'en':
-          return 'Follow us on Facebook';
-        case 'ru':
-          return 'Следите за нами на Фейсбуке';
-        case 'ge':
-          return 'მოგვყევით ფეისბუქზე';      
+        case "en":
+          return "Follow us on Facebook";
+        case "ru":
+          return "Следите за нами на Фейсбуке";
+        case "ge":
+          return "მოგვყევით ფეისბუქზე";
         default:
-          return 'Follow us on Facebook';
+          return "Follow us on Facebook";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -196,7 +201,6 @@ export default {
   margin-right: 11.51px;
   margin-top: 28px;
 }
-
 
 #hide {
   right: 40px;
