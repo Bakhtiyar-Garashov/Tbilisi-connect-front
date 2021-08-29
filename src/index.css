@@ -60,3 +60,15 @@ a:hover {
   transform: translateY(-400px);
   opacity: 0;
 }
+
+.cookie-consent p {
+  color: black;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+.btn-accept {
+  margin-left: 20px;
+  color: #FF7701;
+}

@@ -6,7 +6,7 @@
       <WelcomePage v-if="isWelcomePageActive" @emitHideCommand="isWelcomePageActive=false" />
       <FilterByTagPage v-else-if="isFilterByTagPageActive" @emitHideCommand="isFilterByTagPageActive=false" @emitTagText="emitTagText"/>
     </transition>
-   
+   <cookie-consent/>
   </div>
 </template>
 
@@ -15,6 +15,7 @@ import Map from "./components/Map.vue";
 import Sidebar from "./components/Sidebar.vue";
 import WelcomePage from "./components/WelcomePage.vue";
 import FilterByTagPage from "./components/FilterByTagPage.vue";
+import CookieConsent from './components/CookieConsent.vue';
 import axios from 'axios';
 export default {
   name: "App",
@@ -23,6 +24,7 @@ export default {
     Sidebar,
     WelcomePage,
     FilterByTagPage,
+    CookieConsent,
   },
   data() {
     return {
