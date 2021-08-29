@@ -76,6 +76,8 @@ export default {
   watch: {
     defaultLanguage: function (){
       localStorage.setItem('lang', this.defaultLanguage);
+      window.location.reload();
+
     }
   }
 
