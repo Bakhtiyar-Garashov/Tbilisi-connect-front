@@ -7,7 +7,7 @@
       <span
         class="each-tag"
         :key="tag.id"
-        @click="show(tag.text)"
+        @click.prevent="emitTagText(tag.text)"
         v-for="tag in allTagsList"
         ><img :src="iconBtc" class="icon-btc" v-if="tag.text.toLowerCase()==='cryptocurrency'"/>{{ tag.text | capitalize }}</span
       >
@@ -32,8 +32,8 @@ export default {
       .catch((err) => alert(err));
   },
   methods: {
-    show(value) {
-      alert(value);
+    emitTagText(text){
+      this.$emit('emitTagText', text);
     },
     emitHideCommand() {
       this.$emit("emitHideCommand");

@@ -40,6 +40,13 @@ export default {
       }
     },
   },
+
+  watch: {
+    geoData: function() {
+      this.map.getSource("all_restaurants").setData(this.geoData);
+    },
+  },
+
   mounted() {
     this.createMap();
     // Zoom to the zoom level with an animated transition

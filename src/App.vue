@@ -4,7 +4,7 @@
     <Sidebar @showWelcomePage="showWelcomePage" @showFilterByTagPage="showFilterByTagPage" />
     <transition name="slide-fade">
       <WelcomePage v-if="isWelcomePageActive" @emitHideCommand="isWelcomePageActive=false" />
-      <FilterByTagPage v-else-if="isFilterByTagPageActive" @emitHideCommand="isFilterByTagPageActive=false"/>
+      <FilterByTagPage v-else-if="isFilterByTagPageActive" @emitHideCommand="isFilterByTagPageActive=false" @emitTagText="emitTagText"/>
     </transition>
    
   </div>
@@ -32,7 +32,7 @@ export default {
     };
   },
   created(){
-     this.getData();
+     this.getAllData();
   },
   mounted() {
     setTimeout(() => (this.isWelcomePageActive = false), 5000);
@@ -46,11 +46,24 @@ export default {
       this.isWelcomePageActive=false;
       this.isFilterByTagPageActive=true;
     },
-    async getData(){
+    emitTagText(value){
+      this.getDatabyTag(value);
+    },
+
+    async getAllData(){
       try {
         const data = await axios.get("http://127.0.0.1:8000/api/v1/restaurants/");
         this.allRestaurantsData = data.data;
       } catch (error) {
+        alert(`Error happened while fetching data. See more: ${error}`)
+      }
+    },
+
+    async getDatabyTag(tag){
+      try {
+        const data = await axios.get(`http://127.0.0.1:8000/api/v1/restaurants/?tag=${tag}`);
+        this.allRestaurantsData = data.data;
+      } catch (error){
         alert(`Error happened while fetching data. See more: ${error}`)
       }
     }
