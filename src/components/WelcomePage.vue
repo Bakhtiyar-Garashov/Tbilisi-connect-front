@@ -91,7 +91,7 @@ export default {
   },
   created() {
     this.getData();
-    this.language = JSON.parse(localStorage.getItem("lang"));
+    this.language = localStorage.getItem("lang");
   },
   methods: {
     emitHideCommand() {
