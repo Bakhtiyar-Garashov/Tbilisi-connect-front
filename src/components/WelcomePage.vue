@@ -184,7 +184,7 @@ export default {
   line-height: 14.63px;
   color: black;
   font-family: "Montserrat", sans-serif;
-  padding: 10px 12px;
+  padding: 6px 10px;
 }
 #footer a:hover {
   background-color: black;

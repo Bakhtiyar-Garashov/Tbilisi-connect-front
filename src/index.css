@@ -20,6 +20,10 @@ html {
   display: none !important;
 }
 
+.mapboxgl-ctrl-group {
+  margin: 0 0 65px 10px !important;
+}
+
 html,body { height:100%; }
 
 *:focus {
@@ -70,5 +74,17 @@ a:hover {
 
 .btn-accept {
   margin-left: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.btn-accept:hover {
   color: #FF7701;
+  background-color: black;
+
 }
