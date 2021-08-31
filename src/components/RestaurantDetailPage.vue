@@ -1,14 +1,14 @@
 <template>
   <div id="detail-page">
     <div id="title">
-      <h3>{{ oneRestaurantData.properties.name }}</h3>
+      <h3>{{ data.features[0].properties.name }}</h3>
     </div>
 
     <div id="tags-list">
       <span
         class="each-tag"
         :key="tag.id"
-        v-for="tag in oneRestaurantData.properties.tags"
+        v-for="tag in data.features[0].properties.tags"
         ><img
           :src="iconBtc"
           class="icon-btc"
@@ -18,11 +18,11 @@
     </div>
 
     <div id="address">
-      <p>{{ oneRestaurantData.properties.address }}</p>
+      <p>{{ data.features[0].properties.address }}</p>
     </div>
 
     <div id="image">
-      <img :src="oneRestaurantData.properties.image_url" alt="" srcset="" />
+      <img :src="data.features[0].properties.image_url" alt="" srcset="" />
     </div>
 
     <div id="subtitle">
@@ -31,8 +31,8 @@
 
     <div id="social">
       <a
-        v-if="oneRestaurantData.properties.url_main"
-        :href="oneRestaurantData.properties.url_main"
+        v-if="data.features[0].properties.url_main"
+        :href="data.features[0].properties.url_main"
         target="_blank"
       >
         <img
@@ -42,8 +42,8 @@
         />
       </a>
       <a
-        v-if="oneRestaurantData.properties.url_facebook"
-        :href="oneRestaurantData.properties.url_facebook"
+        v-if="data.features[0].properties.url_facebook"
+        :href="data.features[0].properties.url_facebook"
         target="_blank"
       >
         <img
@@ -54,8 +54,8 @@
       </a>
 
       <a
-        v-if="oneRestaurantData.properties.url_instagram"
-        :href="oneRestaurantData.properties.url_instagram"
+        v-if="data.features[0].properties.url_instagram"
+        :href="data.features[0].properties.url_instagram"
         target="_blank"
       >
         <img
@@ -65,8 +65,8 @@
         />
       </a>
       <a
-        v-if="oneRestaurantData.properties.url_twitter"
-        :href="oneRestaurantData.properties.url_twitter"
+        v-if="data.features[0].properties.url_twitter"
+        :href="data.features[0].properties.url_twitter"
         target="_blank"
       >
         <img
@@ -79,8 +79,8 @@
 
     <div id="footer">
       <a
-        v-if="oneRestaurantData.properties.url_facebook"
-        :href="oneRestaurantData.properties.url_facebook"
+        v-if="data.features[0].properties.url_facebook"
+        :href="data.features[0].properties.url_facebook"
         target="_blank"
         >{{ buttonText }}</a
       >
@@ -91,7 +91,7 @@
 
 <script>
 export default {
-  props: ["oneRestaurantData"],
+  props: ["data"],
   data() {
     return {
       language: localStorage.getItem("lang") || "en",
@@ -118,13 +118,13 @@ export default {
     subtitle: function() {
       switch (this.language) {
         case "en":
-          return this.oneRestaurantData.properties.description_en;
+          return this.data.features[0].properties.description_en;
         case "ru":
-          return this.oneRestaurantData.properties.description_ru;
+          return this.data.features[0].properties.description_ru;
         case "ge":
-          return this.oneRestaurantData.properties.description_ge;
+          return this.data.features[0].properties.description_ge;
         default:
-          return this.oneRestaurantData.properties.description_en;
+          return this.data.features[0].properties.description_en;
       }
     },
     buttonText: function() {
@@ -147,10 +147,15 @@ export default {
       return value.charAt(0).toUpperCase() + value.slice(1);
     },
   },
+  methods:{
+    emitHideCommand(){
+      this.$emit('closeDetailCommand');
+    }
+  }
 };
 </script>
 
-<style>
+<style scoped>
 #detail-page {
   background-color: white;
   width: 500px;
@@ -201,9 +206,7 @@ export default {
 }
 
 #hide {
-  position: absolute;
-  right: 40px;
-  bottom: 15px;
+  margin-top: 20px !important;
   font-weight: 500;
 }
 </style>
