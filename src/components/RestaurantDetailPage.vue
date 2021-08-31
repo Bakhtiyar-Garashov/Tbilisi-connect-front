@@ -18,7 +18,7 @@
     </div>
 
     <div id="address">
-      <p>{{ data.features[0].properties.address }}</p>
+      <b>{{ data.features[0].properties.address }}</b>
     </div>
 
     <div id="image">
@@ -79,8 +79,8 @@
 
     <div id="footer">
       <a
-        v-if="data.features[0].properties.url_facebook"
-        :href="data.features[0].properties.url_facebook"
+        v-if="data.features[0].properties.url_google_map"
+        :href="data.features[0].properties.url_google_map"
         target="_blank"
         >{{ buttonText }}</a
       >
@@ -103,7 +103,7 @@ export default {
       twitterOrange: require("../assets/twitter-orange.svg"),
       instagramDark: require("../assets/instagram-dark.svg"),
       instagramOrange: require("../assets/instagram-orange.svg"),
-      iconBtc: require('../assets/btc.svg'),
+      iconBtc: require("../assets/btc.svg"),
       globeHovered: false,
       facebookHovered: false,
       twitterHovered: false,
@@ -130,13 +130,13 @@ export default {
     buttonText: function() {
       switch (this.language) {
         case "en":
-          return "Follow us on Facebook";
+          return "Take me there";
         case "ru":
-          return "Следите за нами на Фейсбуке";
+          return "Возьми меня туда";
         case "ge":
-          return "მოგვყევით ფეისბუქზე";
+          return "წამიყვანე იქ";
         default:
-          return "Follow us on Facebook";
+          return "Take me there";
       }
     },
   },
@@ -147,11 +147,11 @@ export default {
       return value.charAt(0).toUpperCase() + value.slice(1);
     },
   },
-  methods:{
-    emitHideCommand(){
-      this.$emit('closeDetailCommand');
-    }
-  }
+  methods: {
+    emitHideCommand() {
+      this.$emit("closeDetailCommand");
+    },
+  },
 };
 </script>
 
@@ -167,6 +167,13 @@ export default {
   right: 0;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+@media only screen and (max-width: 500px) {
+  #detail-page {
+    position: fixed;
+    width: 100%;
+  }
 }
 
 .title {
@@ -205,8 +212,24 @@ export default {
   margin-bottom: 1px;
 }
 
+#address {
+  margin: 9px 0px;
+}
+
+#address b {
+  font-size: 12px;
+  font-weight: 900;
+  font-family: "Poppins", sans-serif;
+  line-height: 18px;
+}
+
 #hide {
   margin-top: 20px !important;
   font-weight: 500;
+}
+
+#subtitle p {
+  font-weight: 400 !important;
+  line-height: 24px;
 }
 </style>

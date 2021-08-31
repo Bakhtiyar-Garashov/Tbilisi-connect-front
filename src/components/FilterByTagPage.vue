@@ -66,6 +66,13 @@ export default {
   overflow-x: hidden;
 }
 
+@media only screen and (max-width: 500px) {
+  #filterbytag-page {
+    position: fixed;
+    width: 100%;
+  }
+}
+
 .title {
   font-size: 12px;
   font-family: "Poppins", sans-serif;

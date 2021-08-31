@@ -150,6 +150,14 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+@media only screen and (max-width: 500px) {
+  #welcome-page {
+    position: fixed;
+    width: 100%;
+  }
+}
+
 #title {
   font-size: 20px;
   font-weight: 900 !important;
@@ -163,7 +171,7 @@ export default {
   font-size: 16px;
   line-height: 24px;
   color: black;
-  font-weight: 700;
+  font-weight: 500;
 }
 #image img {
   width: 440px;
@@ -204,10 +212,9 @@ export default {
 }
 
 #hide {
-  right: 40px;
   font-weight: 500;
-  margin-top: 10vh;
-  margin-bottom: 20px;
+  margin-top: 20px;
   float: right;
+  margin-bottom: 10px;
 }
 </style>

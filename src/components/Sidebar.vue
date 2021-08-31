@@ -34,6 +34,8 @@
           id="search-field"
           placeholder="What places are you interested in?"
           v-model="searchWord"
+          @keyup="showFilterByNamePage"
+          
         />
         <span
           v-if="searchWord.length > 0"
@@ -65,6 +67,7 @@ export default {
   methods: {
     resetSearchWord() {
       this.searchWord = "";
+      this.$emit('resetSearchWord');
     },
     showWelcomePage() {
       this.$emit("showWelcomePage");
@@ -72,6 +75,9 @@ export default {
     showFilterByTagPage() {
       this.$emit("showFilterByTagPage");
     },
+    showFilterByNamePage() {
+      this.$emit("showFilterByNamePage", this.searchWord);
+    }
   },
   watch: {
     defaultLanguage: function (){
@@ -95,6 +101,13 @@ export default {
   top: 0%;
   right: 0%;
   z-index: 999;
+}
+
+@media only screen and (max-width: 500px) {
+  #sidebar {
+    position: fixed;
+    width: 100%;
+  }
 }
 
 #upper {
