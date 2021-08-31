@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <Map :geoData="allRestaurantsData"></Map>
+    <Map :geo-data="allRestaurantsData" @emitObjectId="findObjectById"></Map>
     <Sidebar @showWelcomePage="showWelcomePage" @showFilterByTagPage="showFilterByTagPage" />
     <transition name="slide-fade">
       <WelcomePage v-if="isWelcomePageActive" @emitHideCommand="isWelcomePageActive=false" />
       <FilterByTagPage v-else-if="isFilterByTagPageActive" @emitHideCommand="isFilterByTagPageActive=false" @emitTagText="emitTagText"/>
+      <RestaurantDetailPage :one-restaurant-data="oneRestaurantData" v-else-if="isRestaurantDetailPageActive"/>
     </transition>
    <cookie-consent/>
   </div>
@@ -16,6 +17,7 @@ import Sidebar from "./components/Sidebar.vue";
 import WelcomePage from "./components/WelcomePage.vue";
 import FilterByTagPage from "./components/FilterByTagPage.vue";
 import CookieConsent from './components/CookieConsent.vue';
+import RestaurantDetailPage from './components/RestaurantDetailPage.vue';
 import axios from 'axios';
 export default {
   name: "App",
@@ -25,12 +27,15 @@ export default {
     WelcomePage,
     FilterByTagPage,
     CookieConsent,
+    RestaurantDetailPage,
   },
   data() {
     return {
       isWelcomePageActive: false,
       isFilterByTagPageActive: false,
-      allRestaurantsData: []
+      isRestaurantDetailPageActive: false,
+      allRestaurantsData: [],
+      oneRestaurantData:[],
     };
   },
   created(){
@@ -50,6 +55,16 @@ export default {
     },
     emitTagText(value){
       this.getDatabyTag(value);
+    },
+
+    async findObjectById(id){
+      this.isRestaurantDetailPageActive = true;
+      try {
+        const data = await axios.get(`http://127.0.0.1:8000/api/v1/restaurants/${id}`);
+        this.oneRestaurantData = data.data;
+      } catch (error){
+        alert(`Error happened while fetching data. See more: ${error}`)
+      }
     },
 
     async getAllData(){

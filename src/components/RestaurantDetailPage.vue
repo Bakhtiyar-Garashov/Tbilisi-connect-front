@@ -1,18 +1,38 @@
 <template>
-  <div id="welcome-page">
+  <div id="detail-page">
     <div id="title">
-      <h3 id="title">{{ welcomePageData.title }}</h3>
+      <h3>{{ oneRestaurantData.properties.name }}</h3>
     </div>
+
+    <div id="tags-list">
+      <span
+        class="each-tag"
+        :key="tag.id"
+        v-for="tag in oneRestaurantData.properties.tags"
+        ><img
+          :src="iconBtc"
+          class="icon-btc"
+          v-if="tag.text.toLowerCase() === 'cryptocurrency'"
+        />{{ tag.text | capitalize }}</span
+      >
+    </div>
+
+    <div id="address">
+      <p>{{ oneRestaurantData.properties.address }}</p>
+    </div>
+
     <div id="image">
-      <img :src="welcomePageData.image_url" alt="" srcset="" />
+      <img :src="oneRestaurantData.properties.image_url" alt="" srcset="" />
     </div>
+
     <div id="subtitle">
       <p>{{ subtitle }}</p>
     </div>
+
     <div id="social">
       <a
-        v-if="welcomePageData.url_main"
-        :href="welcomePageData.url_main"
+        v-if="oneRestaurantData.properties.url_main"
+        :href="oneRestaurantData.properties.url_main"
         target="_blank"
       >
         <img
@@ -22,8 +42,8 @@
         />
       </a>
       <a
-        v-if="welcomePageData.url_facebook"
-        :href="welcomePageData.url_facebook"
+        v-if="oneRestaurantData.properties.url_facebook"
+        :href="oneRestaurantData.properties.url_facebook"
         target="_blank"
       >
         <img
@@ -34,8 +54,8 @@
       </a>
 
       <a
-        v-if="welcomePageData.url_instagram"
-        :href="welcomePageData.url_instagram"
+        v-if="oneRestaurantData.properties.url_instagram"
+        :href="oneRestaurantData.properties.url_instagram"
         target="_blank"
       >
         <img
@@ -45,8 +65,8 @@
         />
       </a>
       <a
-        v-if="welcomePageData.url_twitter"
-        :href="welcomePageData.url_twitter"
+        v-if="oneRestaurantData.properties.url_twitter"
+        :href="oneRestaurantData.properties.url_twitter"
         target="_blank"
       >
         <img
@@ -56,10 +76,11 @@
         />
       </a>
     </div>
+
     <div id="footer">
       <a
-        v-if="welcomePageData.url_facebook"
-        :href="welcomePageData.url_facebook"
+        v-if="oneRestaurantData.properties.url_facebook"
+        :href="oneRestaurantData.properties.url_facebook"
         target="_blank"
         >{{ buttonText }}</a
       >
@@ -69,11 +90,11 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
+  props: ["oneRestaurantData"],
   data() {
     return {
-      welcomePageData: [],
+      language: localStorage.getItem("lang") || "en",
       globeDark: require("../assets/globe-dark.svg"),
       globeOrange: require("../assets/globe-orange.svg"),
       facebookDark: require("../assets/facebook-dark.svg"),
@@ -82,43 +103,28 @@ export default {
       twitterOrange: require("../assets/twitter-orange.svg"),
       instagramDark: require("../assets/instagram-dark.svg"),
       instagramOrange: require("../assets/instagram-orange.svg"),
+      iconBtc: require('../assets/btc.svg'),
       globeHovered: false,
       facebookHovered: false,
       twitterHovered: false,
       instagramHovered: false,
-      language: localStorage.getItem("lang") || "en",
     };
   },
   created() {
-    this.getData();
     this.language = localStorage.getItem("lang");
-  },
-  methods: {
-    emitHideCommand() {
-      this.$emit("emitHideCommand");
-    },
-    
-    async getData() {
-      try {
-        const data = await axios.get("http://127.0.0.1:8000/api/v1/welcome/");
-        this.welcomePageData = data.data[0];
-      } catch (error) {
-        alert(`Error occurred. See: ${error}`);
-      }
-    },
   },
 
   computed: {
     subtitle: function() {
       switch (this.language) {
         case "en":
-          return this.welcomePageData.subtitle_en;
+          return this.oneRestaurantData.properties.description_en;
         case "ru":
-          return this.welcomePageData.subtitle_ru;
+          return this.oneRestaurantData.properties.description_ru;
         case "ge":
-          return this.welcomePageData.subtitle_ge;
+          return this.oneRestaurantData.properties.description_ge;
         default:
-          return this.welcomePageData.subtitle_en;
+          return this.oneRestaurantData.properties.description_en;
       }
     },
     buttonText: function() {
@@ -134,11 +140,18 @@ export default {
       }
     },
   },
+  filters: {
+    capitalize: function(value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
+  },
 };
 </script>
 
 <style>
-#welcome-page {
+#detail-page {
   background-color: white;
   width: 500px;
   height: calc(100vh - 140px);
@@ -150,64 +163,47 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
 }
-#title {
-  font-size: 20px;
-  font-weight: 900 !important;
-  line-height: 30px;
-  margin-top: 26px;
-  margin-bottom: 8px;
-  color: black;
-}
-#subtitle {
-  margin-top: 10px;
-  font-size: 16px;
-  line-height: 24px;
-  color: black;
-  font-weight: 700;
-}
-#image img {
-  width: 440px;
-  height: 288px;
-  object-fit: cover;
-  border-radius: 4px;
+
+.title {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  line-height: 18px;
 }
 
-#footer {
-  margin-top: 26px;
-  padding-bottom: 50px;
+#tags-list {
+  width: 100%;
 }
 
-#footer a {
+.each-tag {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 4px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  line-height: 14.63px;
+  text-align: center;
   border: 1px solid black;
   border-radius: 4px;
-  font-weight: 700;
-  line-height: 14.63px;
-  color: black;
-  font-family: "Montserrat", sans-serif;
-  padding: 6px 10px;
+  margin-right: 10px;
+  white-space: nowrap;
+  cursor: pointer;
 }
-#footer a:hover {
+
+.each-tag:hover {
   background-color: black;
   color: #ff7701;
 }
 
-#social {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-#social a {
+.each-tag img {
   display: inline;
-  margin-right: 11.51px;
-  margin-top: 28px;
+  margin-bottom: 1px;
 }
 
 #hide {
+  position: absolute;
   right: 40px;
+  bottom: 15px;
   font-weight: 500;
-  margin-top: 10vh;
-  margin-bottom: 20px;
-  float: right;
 }
 </style>

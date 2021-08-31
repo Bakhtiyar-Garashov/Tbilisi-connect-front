@@ -39,6 +39,10 @@ export default {
         alert(`Error occurred when adding map. See more: ${err}`);
       }
     },
+
+    emitObjectId(id) {
+      this.$emit("emitObjectId", id);
+    },
   },
 
   watch: {
@@ -195,6 +199,10 @@ export default {
           .setLngLat(coordinates)
           .setHTML(name)
           .addTo(this.map);
+      });
+
+      this.map.on("click", "unclustered-point", (e) => {
+        this.emitObjectId(e.features[0].id);
       });
 
       this.map.on("mouseleave", "unclustered-point", () => {
