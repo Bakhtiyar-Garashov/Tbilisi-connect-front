@@ -72,6 +72,7 @@ export default {
   position: absolute;
   top: 140px;
   right: 0;
+  z-index: 2;
   overflow-y: auto;
   overflow-x: hidden;
 }
