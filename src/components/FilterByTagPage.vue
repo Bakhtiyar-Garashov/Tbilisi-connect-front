@@ -27,7 +27,7 @@ export default {
   },
   created() {
     axios
-      .get("http://127.0.0.1:8000/api/v1/tags/")
+      .get("https://tbilisi-connect.herokuapp.com/api/v1/tags/")
       .then((response) => (this.allTagsList = response.data))
       .catch((err) => alert(err));
   },

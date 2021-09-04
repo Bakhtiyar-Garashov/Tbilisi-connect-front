@@ -38,7 +38,7 @@ export default {
       try {
         if (this.searchWord.length > 0) {
           const data = await axios.get(
-            `http://127.0.0.1:8000/api/v1/restaurants/?name=${this.searchWord}`
+            `https://tbilisi-connect.herokuapp.com/api/v1/restaurants/?name=${this.searchWord}`
           );
           this.allFilteredObjects = data.data;
         } else {

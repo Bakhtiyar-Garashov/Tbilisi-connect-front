@@ -100,7 +100,7 @@ export default {
     
     async getData() {
       try {
-        const data = await axios.get("http://127.0.0.1:8000/api/v1/welcome/");
+        const data = await axios.get("https://tbilisi-connect.herokuapp.com/api/v1/welcome/");
         this.welcomePageData = data.data[0];
       } catch (error) {
         alert(`Error occurred. See: ${error}`);

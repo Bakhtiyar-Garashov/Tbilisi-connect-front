@@ -95,7 +95,7 @@ export default {
     async findObjectById(id) {
       try {
         const data = await axios.get(
-          `http://127.0.0.1:8000/api/v1/restaurants/${id}`
+          `https://tbilisi-connect.herokuapp.com/api/v1/restaurants/${id}`
         );
         const singleData = {
           type: "FeatureCollection",
@@ -114,7 +114,7 @@ export default {
     async getAllData() {
       try {
         const data = await axios.get(
-          "http://127.0.0.1:8000/api/v1/restaurants/"
+          "https://tbilisi-connect.herokuapp.com/api/v1/restaurants/"
         );
         this.allRestaurantsData = data.data;
       } catch (error) {
@@ -125,7 +125,7 @@ export default {
     async getDatabyTag(tag) {
       try {
         const data = await axios.get(
-          `http://127.0.0.1:8000/api/v1/restaurants/?tag=${tag}`
+          `https://tbilisi-connect.herokuapp.com/api/v1/restaurants/?tag=${tag}`
         );
         this.allRestaurantsData = data.data;
       } catch (error) {
