@@ -100,7 +100,7 @@ export default {
     
     async getData() {
       try {
-        const data = await axios.get("http://68.183.29.238/api/v1/welcome/");
+        const data = await axios.get("https://api.bazaranet.co/api/v1/welcome/");
         this.welcomePageData = data.data[0];
       } catch (error) {
         alert(`Error occurred. See: ${error}`);

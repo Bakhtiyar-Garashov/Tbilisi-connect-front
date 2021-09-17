@@ -27,7 +27,7 @@ export default {
   },
   created() {
     axios
-      .get("http://68.183.29.238/api/v1/tags/")
+      .get("https://api.bazaranet.co/api/v1/tags/")
       .then((response) => (this.allTagsList = response.data))
       .catch((err) => alert(err));
   },

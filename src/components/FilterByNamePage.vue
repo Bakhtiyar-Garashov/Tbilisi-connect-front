@@ -38,7 +38,7 @@ export default {
       try {
         if (this.searchWord.length > 0) {
           const data = await axios.get(
-            `http://68.183.29.238/api/v1/restaurants/?name=${this.searchWord}`
+            `https://api.bazaranet.co/api/v1/restaurants/?name=${this.searchWord}`
           );
           this.allFilteredObjects = data.data;
         } else {
