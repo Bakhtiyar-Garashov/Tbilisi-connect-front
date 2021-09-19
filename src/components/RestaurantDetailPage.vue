@@ -175,6 +175,10 @@ export default {
     position: fixed;
     width: 100%;
   }
+
+  #detail-page img {
+    width: 318px !important;
+  }
 }
 
 .title {
