@@ -171,6 +171,7 @@ export default {
       const popup = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: false,
+        className: "mapboxgl-popup-custom",
       });
 
       // When a click event occurs on a feature in

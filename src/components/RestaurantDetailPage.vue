@@ -230,7 +230,7 @@ export default {
 }
 
 #subtitle p {
-  font-weight: 400 !important;
+  font-weight: 300;
   line-height: 24px;
 }
 </style>
