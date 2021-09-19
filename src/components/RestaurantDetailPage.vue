@@ -22,7 +22,7 @@
     </div>
 
     <div id="image">
-      <img :src="data.features[0].properties.image_url" alt="" srcset="" />
+      <img id="restaurant-image" :src="data.features[0].properties.image_url" alt="" srcset="" />
     </div>
 
     <div id="subtitle">
@@ -176,7 +176,7 @@ export default {
     width: 100%;
   }
 
-  #detail-page img {
+  #restaurant-image {
     width: 318px !important;
   }
 }
