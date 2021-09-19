@@ -9,6 +9,9 @@
 html {
   font-family: "Poppins", sans-serif;
   -ms-overflow-style: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-stroke: 0.45px;
 }
 
 *::-webkit-scrollbar {
@@ -99,11 +102,9 @@ a {
   text-decoration: none !important;
 }
 
-
 .mapboxgl-popup-custom {
   padding-bottom: 26px;
 }
-
 
 @media only screen and (max-width: 380px) {
   #logo img {
@@ -112,4 +113,8 @@ a {
   #search-field {
     margin-top: 27px !important;
   }
+}
+
+#hide {
+  font-size: 12px !important;
 }

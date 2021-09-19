@@ -174,6 +174,7 @@ export default {
 }
 .sl-nav li ul {
   display: none;
+  width: 30px !important;
 }
 .sl-nav li:hover ul {
   position: absolute;
@@ -192,7 +193,7 @@ export default {
   position: relative;
   text-align: left;
   background: transparent;
-  padding: 15px 15px;
+  padding: 7px 3px;
   padding-bottom: 0;
   z-index: 2;
   font-size: 12px;
@@ -213,7 +214,7 @@ export default {
 span,
 a {
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 18px;
   color: black;
 }
@@ -241,7 +242,7 @@ a {
 .input-widget {
   color: black;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   position: absolute;
   top: 103px;
   right: 33px;

@@ -161,7 +161,7 @@ export default {
 
 #title {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 30px;
   margin-top: 26px;
   margin-bottom: 8px;
@@ -172,7 +172,7 @@ export default {
   font-size: 16px;
   line-height: 24px;
   color: black;
-  font-weight: 300;
+  font-weight: 200;
 }
 #image img {
   width: 440px;

@@ -223,7 +223,7 @@ export default {
 
 #address b {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   font-family: "Poppins", sans-serif;
   line-height: 18px;
 }
@@ -234,7 +234,7 @@ export default {
 }
 
 #subtitle p {
-  font-weight: 300;
+  font-weight: 200;
   line-height: 24px;
 }
 </style>
