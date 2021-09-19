@@ -221,7 +221,7 @@ a {
 .search-container {
   width: 100%;
   margin-left: 20px;
-  margin-right: 40px;
+  margin-right: 25px;
 }
 
 #search-field {
@@ -244,7 +244,7 @@ a {
   font-weight: 500;
   position: absolute;
   top: 103px;
-  right: 48px;
+  right: 33px;
   cursor: pointer;
 }
 </style>

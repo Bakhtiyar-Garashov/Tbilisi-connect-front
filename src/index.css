@@ -103,3 +103,13 @@ a {
 .mapboxgl-popup-custom {
   padding-bottom: 26px;
 }
+
+
+@media only screen and (max-width: 380px) {
+  #logo img {
+    width: 170px;
+  }
+  #search-field {
+    margin-top: 27px !important;
+  }
+}
