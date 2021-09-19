@@ -177,7 +177,7 @@ export default {
   }
 
   #restaurant-image {
-    width: 318px !important;
+    width: 100% !important;
   }
 }
 
