@@ -56,11 +56,11 @@ export default {
 #filterbytag-page {
   background-color: white;
   width: 500px;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 130px);
   padding-left: 20px;
   padding-right: 40px;
   position: absolute;
-  top: 140px;
+  top: 130px;
   right: 0;
   z-index: 2;
   overflow-y: auto;
@@ -114,6 +114,6 @@ export default {
   position: absolute;
   right: 40px;
   bottom: 15px;
-  font-weight: 500;
+  font-weight: 200;
 }
 </style>

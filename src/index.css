@@ -69,14 +69,14 @@ a:hover {
 .cookie-consent p {
   color: black;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   font-family: "Poppins", sans-serif;
 }
 
 .btn-accept {
   margin-left: 20px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   font-family: "Poppins", sans-serif;
   color: black;
   border: 1px solid black;
@@ -101,5 +101,5 @@ a {
 
 
 .mapboxgl-popup-custom {
-  padding-bottom: 23px;
+  padding-bottom: 26px;
 }

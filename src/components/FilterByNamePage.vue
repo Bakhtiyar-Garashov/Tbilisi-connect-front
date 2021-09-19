@@ -94,7 +94,7 @@ export default {
   position: absolute;
   right: 40px;
   bottom: 15px;
-  font-weight: 500;
+  font-weight: 200;
 }
 
 .suggested-name {
@@ -102,5 +102,9 @@ export default {
     font-size: 16px;
     font-family: "Poppins", sans-serif;
     line-height: 24px;
+}
+
+.suggested-name b {
+  font-weight: 400;
 }
 </style>

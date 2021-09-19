@@ -161,7 +161,7 @@ export default {
 
 #title {
   font-size: 20px;
-  font-weight: 900 !important;
+  font-weight: 700;
   line-height: 30px;
   margin-top: 26px;
   margin-bottom: 8px;
@@ -172,7 +172,7 @@ export default {
   font-size: 16px;
   line-height: 24px;
   color: black;
-  font-weight: 500;
+  font-weight: 300;
 }
 #image img {
   width: 440px;
@@ -189,7 +189,7 @@ export default {
 #footer a {
   border: 1px solid black;
   border-radius: 4px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 14.63px;
   color: black;
   font-family: "Montserrat", sans-serif;
@@ -213,7 +213,7 @@ export default {
 }
 
 #hide {
-  font-weight: 500;
+  font-weight: 200;
   margin-top: 20px;
   float: right;
   margin-bottom: 10px;

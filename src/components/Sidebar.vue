@@ -140,7 +140,7 @@ export default {
 #about a {
   text-decoration: none;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 18px;
   color: #1c1c1c;
 }
@@ -213,7 +213,7 @@ export default {
 span,
 a {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 18px;
   color: black;
 }
@@ -235,13 +235,13 @@ a {
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   color: #1c1c1c;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .input-widget {
   color: black;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   position: absolute;
   top: 103px;
   right: 48px;

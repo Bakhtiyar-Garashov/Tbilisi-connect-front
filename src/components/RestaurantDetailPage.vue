@@ -219,14 +219,14 @@ export default {
 
 #address b {
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   font-family: "Poppins", sans-serif;
   line-height: 18px;
 }
 
 #hide {
   margin-top: 20px !important;
-  font-weight: 500;
+  font-weight: 200;
 }
 
 #subtitle p {
