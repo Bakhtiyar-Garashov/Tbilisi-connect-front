@@ -161,7 +161,7 @@ export default {
   width: 500px;
   height: calc(100vh - 140px);
   padding-left: 20px;
-  padding-right: 40px;
+  padding-right: 25px !important;
   position: absolute;
   top: 140px;
   right: 0;
