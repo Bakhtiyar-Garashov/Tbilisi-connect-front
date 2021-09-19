@@ -4,7 +4,7 @@
       <h3 id="title">{{ welcomePageData.title }}</h3>
     </div>
     <div id="image">
-      <img :src="welcomePageData.image_url" alt="" srcset="" />
+      <img id="welcome-image" :src="welcomePageData.image_url" alt="" srcset="" />
     </div>
     <div id="subtitle">
       <p>{{ subtitle }}</p>
@@ -179,6 +179,13 @@ export default {
   height: 288px;
   object-fit: cover;
   border-radius: 4px;
+}
+
+
+@media only screen and (max-width: 500px) {
+  #welcome-image {
+    width: 100% !important;
+  }
 }
 
 #footer {
