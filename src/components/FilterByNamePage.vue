@@ -106,5 +106,6 @@ export default {
 
 .suggested-name b {
   font-weight: 400;
+  color: black !important;
 }
 </style>
