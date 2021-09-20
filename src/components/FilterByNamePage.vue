@@ -2,7 +2,7 @@
   <div id="filterbyname-page">
     <ul id="suggested-names-list">
       <li class="suggested-name" v-for="each in allFilteredObjects.features" :key="each.properties.id">
-        <a href="/" @click.prevent="emitObjectId(each.id)"> <b> {{ each.properties.name | capitalize }}</b> </a>
+        <a class="name-link" href="/" @click.prevent="emitObjectId(each.id)"> <b> {{ each.properties.name | capitalize }}</b> </a>
       </li>
     </ul>
 
@@ -107,5 +107,9 @@ export default {
 .suggested-name b {
   font-weight: 400;
   color: black !important;
+}
+
+.name-link:hover {
+  color: #ff7701;
 }
 </style>
