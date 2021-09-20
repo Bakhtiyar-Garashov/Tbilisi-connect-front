@@ -51,7 +51,7 @@ body {
 }
 
 a:hover {
-  color: #ff7701;
+  color: #ff7701 !important;
   cursor: pointer;
 }
 

@@ -110,6 +110,6 @@ export default {
 }
 
 .name-link:hover {
-  color: #ff7701;
+  color: #ff7701 !important;
 }
 </style>
